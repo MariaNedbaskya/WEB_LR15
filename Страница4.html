@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фитнес Трекер</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        header {
+            background: linear-gradient(to right, #4a76a8, #3a6391);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+            border: 2px solid white;
+        }
+
+        .greeting {
+            font-size: 16px;
+        }
+
+        .date {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: #4a76a8;
+            padding: 10px 20px;
+        }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                justify-content: space-between;
+            }
+
+            nav a {
+                color: white;
+                text-decoration: none;
+                font-size: 14px;
+                padding: 5px 10px;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+
+                nav a:hover {
+                    background-color: rgba(255,255,255,0.2);
+                }
+
+        .progress-section {
+            padding: 20px;
+            background-color: #f0f7ff;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .progress-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #4a76a8;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #4a76a8;
+            width: 84%;
+            border-radius: 10px;
+        }
+
+        .goal-section {
+            padding: 15px;
+            background-color: white;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .goal-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #4a76a8;
+        }
+
+        .goal-text {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .days-section {
+            padding: 15px;
+            margin: 10px;
+        }
+
+        .days-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #4a76a8;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .day-item {
+            text-align: center;
+            padding: 10px 5px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .day-name {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .day-date {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .today {
+            background-color: #4a76a8;
+            color: white;
+        }
+
+            .today .day-name {
+                color: white;
+            }
+
+        .categories-section {
+            padding: 15px;
+            margin: 10px;
+        }
+
+        .categories-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #4a76a8;
+        }
+
+        .category-item {
+            padding: 15px;
+            background-color: white;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .category-arrow {
+            color: #4a76a8;
+            font-weight: bold;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-button {
+            flex: 1;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+            .nav-button:hover {
+                background-color: #2d2d2d;
+            }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #666;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-info">
+                <img src="profil.jpg" alt="Профиль" class="profile-img">
+                <div>
+                    <div class="greeting">Привет, Ольга!</div>
+                    <div class="date">Сегодня 3 Мая</div>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#">Главная страница</a></li>
+                <li><a href="#">Список тренировок</a></li>
+                <li><a href="#">Информация о профиле</a></li>
+            </ul>
+        </nav>
+
+        <section class="progress-section">
+            <div class="progress-title">Ваш прогресс</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="progress-percentage">84%</div>
+        </section>
+
+        <section class="goal-section">
+            <div class="goal-title">Ваша цель</div>
+            <div class="goal-text">Заниматься спортом каждый день. 14 дней</div>
+        </section>
+
+        <section class="days-section">
+            <div class="days-title">Календарь тренировок</div>
+            <div class="days-grid">
+                <div class="day-item">
+                    <div class="day-name">Чт</div>
+                    <div class="day-date">1 Мая</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-name">Пт</div>
+                    <div class="day-date">2 Мая</div>
+                </div>
+                <div class="day-item today">
+                    <div class="day-name">Сб</div>
+                    <div class="day-date">3 Мая</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-name">Вс</div>
+                    <div class="day-date">4 Мая</div>
+                </div>
+                <div class="day-item">
+                    <div class="day-name">Пн</div>
+                    <div class="day-date">5 Мая</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories-section">
+            <div class="categories-title">Категории тренировок</div>
+            <div class="category-item">
+                <div class="category-name">Силовые тренировки</div>
+                <div class="category-arrow">></div>
+            </div>
+            <div class="category-item">
+                <div class="category-name">Кардио тренировки</div>
+                <div class="category-arrow">></div>
+            </div>
+            <div class="category-item">
+                <div class="category-name">Йога</div>
+                <div class="category-arrow">></div>
+            </div>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="мобильная_страница.html" class="nav-button">Редактировать</a>
+            <a href="Страница1.html" class="nav-button">Профиль</a>
+            <a href="Страница2.html" class="nav-button">Тренировки</a>
+            <a href="Страница4.html" class="nav-button">Занятия</a>
+        </div>
+
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>
