@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать профиль</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .profile-container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #4a76a8;
+            margin: 0 auto 15px;
+            display: block;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+            input:focus {
+                border-color: #4a76a8;
+                outline: none;
+            }
+
+        .btn-submit {
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+            margin-bottom: 15px;
+        }
+
+            .btn-submit:hover {
+                background-color: #2d2d2d;
+            }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            flex: 1;
+            background-color: #4a76a8;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+            .nav-button:hover {
+                background-color: #3a6391;
+            }
+
+        @media (max-width: 480px) {
+            .profile-container {
+                padding: 20px;
+            }
+
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="woman.jpg" alt="Фото профиля" class="profile-photo">
+            <h1>Мой профиль</h1>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <label for="firstName">Имя</label>
+                <input type="text" id="firstName" placeholder="Имя">
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Фамилия</label>
+                <input type="text" id="lastName" placeholder="Фамилия">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email">
+            </div>
+
+            <button type="submit" class="btn-submit">Подтвердить</button>
+
+            <div class="nav-buttons">
+                <a href="Страница1.html" class="nav-button">Профиль</a>
+                <a href="Страница2.html" class="nav-button">Тренировки</a>
+                <a href="Страница3.html" class="nav-button">Трекер</a>
+                <a href="Страница4.html" class="nav-button">Занятия</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
