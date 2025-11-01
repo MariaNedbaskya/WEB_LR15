@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Начнем занятие!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        header {
+            background: linear-gradient(to right, #4a76a8, #3a6391);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background-color: #4a76a8;
+            padding: 10px 20px;
+        }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                justify-content: space-between;
+            }
+
+            nav a {
+                color: white;
+                text-decoration: none;
+                font-size: 14px;
+                padding: 5px 10px;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+
+                nav a:hover {
+                    background-color: rgba(255,255,255,0.2);
+                }
+
+        .categories-section {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #4a76a8;
+            font-weight: bold;
+        }
+
+        .categories-slider {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .categories-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px 5px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+            .categories-container::-webkit-scrollbar {
+                display: none; 
+            }
+
+        .category-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            min-width: 120px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+            .category-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .category-card.active {
+                background: linear-gradient(135deg, #4a76a8, #3a6391);
+                color: white;
+            }
+
+                .category-card.active .category-icon {
+                    color: white;
+                }
+
+        .category-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #4a76a8;
+            transition: color 0.3s;
+        }
+
+        .category-name {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #4a76a8;
+            transition: all 0.3s;
+            z-index: 2;
+        }
+
+            .slider-arrow:hover {
+                background: #4a76a8;
+                color: white;
+                transform: translateY(-50%) scale(1.1);
+            }
+
+            .slider-arrow:active {
+                transform: translateY(-50%) scale(0.95);
+            }
+
+            .slider-arrow.prev {
+                left: -10px;
+            }
+
+            .slider-arrow.next {
+                right: -10px;
+            }
+
+            .slider-arrow.hidden {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+
+                .slider-arrow.hidden:hover {
+                    background: white;
+                    color: #4a76a8;
+                    transform: translateY(-50%) scale(1);
+                }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .slider-dot.active {
+                background-color: #4a76a8;
+                transform: scale(1.2);
+            }
+
+        .workouts-section {
+            padding: 0 20px 20px;
+        }
+
+        .workout-card {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+            .workout-card:hover {
+                transform: translateY(-2px);
+            }
+
+        .workout-image {
+            width: 120px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .workout-info {
+            padding: 15px;
+            flex: 1;
+        }
+
+        .workout-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .workout-duration {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .workout-button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+            .workout-button:hover {
+                background-color: #2d2d2d;
+            }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-button {
+            flex: 1;
+            background-color: #4a76a8;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+            .nav-button:hover {
+                background-color: #3a6391;
+            }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #666;
+            font-size: 12px;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 480px) {
+            .slider-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+                .slider-arrow.prev {
+                    left: -5px;
+                }
+
+                .slider-arrow.next {
+                    right: -5px;
+                }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Начнем занятие!</h1>
+            <p>Выберите тренировку для начала</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#">Главная страница</a></li>
+                <li><a href="#">Список тренировок</a></li>
+                <li><a href="#">Информация о профиле</a></li>
+            </ul>
+        </nav>
+
+        <section class="categories-section">
+            <div class="section-title">Категории тренировок</div>
+
+            <div class="categories-slider">
+                <button class="slider-arrow prev" id="prevArrow">‹</button>
+                <button class="slider-arrow next" id="nextArrow">›</button>
+
+                <div class="categories-container" id="categoriesContainer">
+                    <div class="category-card active" data-category="all">
+                        <div class="category-icon">⭐</div>
+                        <div class="category-name">Все</div>
+                    </div>
+                    <div class="category-card" data-category="strength">
+                        <div class="category-icon">💪</div>
+                        <div class="category-name">Силовые</div>
+                    </div>
+                    <div class="category-card" data-category="cardio">
+                        <div class="category-icon">🏃‍♀️</div>
+                        <div class="category-name">Кардио</div>
+                    </div>
+                    <div class="category-card" data-category="yoga">
+                        <div class="category-icon">🧘‍♀️</div>
+                        <div class="category-name">Йога</div>
+                    </div>
+                    <div class="category-card" data-category="stretching">
+                        <div class="category-icon">🤸‍♀️</div>
+                        <div class="category-name">Растяжка</div>
+                    </div>
+                    <div class="category-card" data-category="hiit">
+                        <div class="category-icon">⚡</div>
+                        <div class="category-name">Интервальные</div>
+                    </div>
+                    <div class="category-card" data-category="circuit">
+                        <div class="category-icon">🔄</div>
+                        <div class="category-name">Круговая</div>
+                    </div>
+                    <div class="category-card" data-category="pilates">
+                        <div class="category-icon">🌟</div>
+                        <div class="category-name">Пилатес</div>
+                    </div>
+                    <div class="category-card" data-category="dance">
+                        <div class="category-icon">💃</div>
+                        <div class="category-name">Танцы</div>
+                    </div>
+                </div>
+
+                <div class="slider-nav" id="sliderNav">
+                </div>
+            </div>
+        </section>
+
+        <section class="workouts-section">
+            <div class="section-title">Популярные тренировки</div>
+
+            <div class="workout-card" data-category="hiit">
+                <img src="traning.jpg" alt="Тренировка" class="workout-image">
+                <div class="workout-info">
+                    <div class="workout-title">Интервальная тренировка</div>
+                    <div class="workout-duration">30 минут • Средняя сложность</div>
+                    <button class="workout-button">Начать</button>
+                </div>
+            </div>
+
+            <div class="workout-card" data-category="yoga">
+                <img src="traning4.jpg" alt="Йога" class="workout-image">
+                <div class="workout-info">
+                    <div class="workout-title">Утренняя йога</div>
+                    <div class="workout-duration">20 минут • Легкая сложность</div>
+                    <button class="workout-button">Начать</button>
+                </div>
+            </div>
+
+            <div class="workout-card" data-category="stretching">
+                <img src="traning3.jpg" alt="Растяжка" class="workout-image">
+                <div class="workout-info">
+                    <div class="workout-title">Растяжка всего тела</div>
+                    <div class="workout-duration">15 минут • Легкая сложность</div>
+                    <button class="workout-button">Начать</button>
+                </div>
+            </div>
+
+            <div class="workout-card" data-category="strength">
+                <img src="traning2.jpg" alt="Силовая" class="workout-image">
+                <div class="workout-info">
+                    <div class="workout-title">Силовая тренировка</div>
+                    <div class="workout-duration">45 минут • Высокая сложность</div>
+                    <button class="workout-button">Начать</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="nav-buttons">
+            <a href="мобильная_страница.html" class="nav-button">Редактировать</a>
+            <a href="Страница1.html" class="nav-button">Профиль</a>
+            <a href="Страница2.html" class="nav-button">Тренировки</a>
+            <a href="Страница3.html" class="nav-button">Трекер</a>
+        </div>
+
+        <footer>
+            Фитнес Приложение © 2023
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const categoriesContainer = document.getElementById('categoriesContainer');
+            const prevArrow = document.getElementById('prevArrow');
+            const nextArrow = document.getElementById('nextArrow');
+            const sliderNav = document.getElementById('sliderNav');
+            const categoryCards = document.querySelectorAll('.category-card');
+            const workoutCards = document.querySelectorAll('.workout-card');
+
+            const cardWidth = 135; 
+            const visibleCards = 4;
+            let currentPosition = 0;
+            const maxPosition = categoriesContainer.scrollWidth - categoriesContainer.clientWidth;
+
+            const totalCategories = categoryCards.length;
+            const totalDots = Math.ceil(totalCategories / visibleCards);
+
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', function () {
+                    currentPosition = i * (cardWidth * visibleCards);
+                    scrollToPosition(currentPosition);
+
+                    updateDots();
+                    updateArrows();
+                });
+                sliderNav.appendChild(dot);
+            }
+
+            function scrollToPosition(position) {
+                categoriesContainer.scrollTo({
+                    left: position,
+                    behavior: 'smooth'
+                });
+            }
+
+            function updateArrows() {
+                prevArrow.classList.toggle('hidden', currentPosition <= 0);
+                nextArrow.classList.toggle('hidden', currentPosition >= maxPosition);
+            }
+
+            function updateDots() {
+                const activeDotIndex = Math.round(currentPosition / (cardWidth * visibleCards));
+                document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activeDotIndex);
+                });
+            }
+
+            prevArrow.addEventListener('click', function () {
+                if (currentPosition > 0) {
+                    currentPosition = Math.max(0, currentPosition - (cardWidth * visibleCards));
+                    scrollToPosition(currentPosition);
+                    updateArrows();
+                    updateDots();
+                }
+            });
+
+            nextArrow.addEventListener('click', function () {
+                if (currentPosition < maxPosition) {
+                    currentPosition = Math.min(maxPosition, currentPosition + (cardWidth * visibleCards));
+                    scrollToPosition(currentPosition);
+                    updateArrows();
+                    updateDots();
+                }
+            });
+
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    categoryCards.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const selectedCategory = this.getAttribute('data-category');
+                    filterWorkouts(selectedCategory);
+                });
+            });
+
+            function filterWorkouts(category) {
+                workoutCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            categoriesContainer.addEventListener('scroll', function () {
+                currentPosition = this.scrollLeft;
+                updateDots();
+                updateArrows();
+            });
+
+            updateArrows();
+
+            let startX = 0;
+            let scrollLeft = 0;
+
+            categoriesContainer.addEventListener('touchstart', function (e) {
+                startX = e.touches[0].pageX;
+                scrollLeft = categoriesContainer.scrollLeft;
+            });
+
+            categoriesContainer.addEventListener('touchmove', function (e) {
+                if (!startX) return;
+                const x = e.touches[0].pageX;
+                const walk = (x - startX) * 2;
+                categoriesContainer.scrollLeft = scrollLeft - walk;
+            });
+        });
+    </script>
+</body>
+</html>
