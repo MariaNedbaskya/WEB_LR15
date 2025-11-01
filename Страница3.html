@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Растяжка - Мышцы пресса и живота</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .page {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .training {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            overflow: hidden;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .training__image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .training__image-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .training__header {
+            padding: 25px 20px 15px;
+        }
+
+        .training__title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .training__subtitle {
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+
+        .training__progress {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .training__progress-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .training__progress-number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .training__progress-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .training__progress-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #000000;
+        }
+
+        .training__progress-time {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .training__stats {
+            display: flex;
+            padding: 20px;
+            gap: 15px;
+        }
+
+        .training__stat {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 12px;
+            text-align: center;
+            background-color: #f3e8fd;
+            border: 1px solid #e9d7fc;
+        }
+
+        .training__stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #8e44ad;
+            margin-bottom: 5px;
+        }
+
+        .training__stat-label {
+            font-size: 13px;
+            color: #9b59b6;
+        }
+
+        .training__description {
+            padding: 0 20px 25px;
+        }
+
+        .training__description-text {
+            font-size: 16px;
+            color: #5a6c7d;
+            line-height: 1.7;
+        }
+
+        .training__action {
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        .training__button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 18px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+
+            .training__button:hover {
+                background-color: #2d2d2d;
+            }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            flex: 1;
+            background-color: #4a76a8;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+            .nav-button:hover {
+                background-color: #3a6391;
+            }
+
+        @media (max-width: 480px) {
+            .training {
+                margin: 0;
+            }
+
+            .training__title {
+                font-size: 28px;
+            }
+
+            .training__image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body class="page">
+    <div class="training">
+        <div class="training__image">
+            <img src="traning.jpg" alt="Упражнение на растяжку" class="training__image-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=width:100%;height:100%;background:linear-gradient(135deg,#9b59b6 0%,#8e44ad 100%);display:flex;align-items:center;justify-content:center;color:white;font-size:20px;>Изображение упражнения</div>';">
+        </div>
+
+        <div class="training__header">
+            <h1 class="training__title">Растяжка</h1>
+            <p class="training__subtitle">Мышцы пресса и живота</p>
+        </div>
+
+        <div class="training__progress">
+            <div class="training__progress-main">
+                <span class="training__progress-number">2 из 6</span>
+                <div class="training__progress-info">
+                    <span class="training__progress-name">Растяжка 5 минут</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="training__stats">
+            <div class="training__stat">
+                <div class="training__stat-value">120 кал</div>
+                <div class="training__stat-label">Сжигание</div>
+            </div>
+            <div class="training__stat">
+                <div class="training__stat-value">Средняя</div>
+                <div class="training__stat-label">Сложность</div>
+            </div>
+        </div>
+
+        <div class="training__description">
+            <p class="training__description-text">
+                Это упражнение на растяжку и укрепление мышц кора. Лягте на живот,
+                положите предплечья на пол и медленно поднимайте верхнюю часть тела,
+                напрягая мышцы спины и пресса. Дышите ровно.
+            </p>
+        </div>
+
+        <div class="training__action">
+            <button class="training__button">
+                Начать
+            </button>
+
+            <div class="nav-buttons">
+                <a href="мобильная_страница.html" class="nav-button">Редактировать</a>
+                <a href="Страница1.html" class="nav-button">Профиль</a>
+                <a href="Страница3.html" class="nav-button">Трекер</a>
+                <a href="Страница4.html" class="nav-button">Занятия</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
